@@ -1,0 +1,37 @@
+﻿#menu2 > ul { width: 100%; }
+ 
+#menu2 ul {
+    background-color: white;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+ 
+#menu2 li { list-style: none; }
+ 
+#menu2 > ul > li { float: left; }
+ 
+#menu2 li > ul {
+    position: absolute;
+    visibility: hidden;
+}
+ 
+#menu2 li:hover ul { visibility: visible; }
+ 
+#menu2 li a {
+    color: black;
+    display: block;
+    font-weight: bold;
+    padding: 0 5px;
+    text-decoration: none;
+}
+ 
+#menu2 li ul li a {
+    background: white;
+    text-decoration: none;
+}
+ 
+#menu2 li ul li a:hover, ul li:hover a {
+    background: #ea7f00;
+    text-decoration: none;
+}

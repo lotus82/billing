@@ -1,0 +1,73 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="App.master.vb" Inherits="App_Billing.App" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="stylesheet" type="text/css" href="/Content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/bootstrap.css" />
+     <link rel="stylesheet" type="text/css" href="/Content/animate.css" />
+    <link rel="stylesheet" type="text/css" href="/Styles/navbar.css" />
+    <script src="Scripts/jquery-1.9.0.min.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <link href="/Images/billing.ico" rel="shortcut icon" type="image/x-icon" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+
+<body>  
+    <form id="form1" runat="server" defaultbutton="btnEnter" >
+        <div class="container" style="border: 1px solid LightGray; background-color: #f8f6f6; border-radius: 3px; padding: 0px;width:90%">
+       
+        <div class="row">
+            <div class="col-md-6">
+        <div class="btn-group" style="padding: 0px; margin: 0px;">
+            <button class="btn btn-default btn-sm   dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: #f8f6f6; color: #0033cc">
+                <span class="glyphicon glyphicon-cog"></span>Меню  <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="Buidings_List.aspx" style="color: #0033cc">Список зданий</a></li>
+                <li><a href="#" style="color: #0033cc">Другое действие</a></li>
+                <li><a href="#" style="color: #0033cc">Что-то иное</a></li>
+                <li class="divider"></li>
+                <li><a href="#" style="color: #0033cc">Отдельная ссылка</a></li>
+            </ul>
+
+        </div>
+
+            </div>
+        <div class="col-md-6" style="text-align:right;vertical-align:central;padding-right:50px;padding-top:7px;">
+      <asp:LinkButton ID="LinkButtonHome" runat="server" PostBackUrl="~/App.aspx" ><span class="glyphicon glyphicon-home"></span></asp:LinkButton>
+            </div>
+
+        </div>
+    </div>
+        <div class="container" style="width:90%">
+     
+              
+            <asp:Button ID="btnEnter" runat="server" OnClientClick="return false;" Style="visibility: hidden; position: absolute" Text="Button" />
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <div>
+                <div class="row">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="footer navbar-fixed-bottom">
+            <div class="row" style="text-align: center; background-color: #f0f0f0;">
+                <div class="col-md-6" style="text-align: left">
+                    <asp:Label ID="Label_footer" runat="server" Font-Size="12pt" ForeColor="#0033cc"></asp:Label>
+                </div>
+                <div class="col-md-6" style="text-align: right"><a style="color: #A20702; font-size: 16px" href="ExitForm.aspx"><span class="glyphicon glyphicon-log-out"></span>Выход   </a></div>
+            </div>
+        </div>
+</body>
+</html>
