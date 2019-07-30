@@ -1,0 +1,13 @@
+C:\Users\suhov.d\Source\Workspaces\Рабочая область\App-Billing\App-Billing\bin\App-Billing.dll.config
+C:\Users\suhov.d\Source\Workspaces\Рабочая область\App-Billing\App-Billing\bin\App-Billing.dll
+C:\Users\suhov.d\Source\Workspaces\Рабочая область\App-Billing\App-Billing\bin\App-Billing.pdb
+C:\Users\suhov.d\Source\Workspaces\Рабочая область\App-Billing\App-Billing\bin\App-Billing.xml
+C:\Users\suhov.d\Source\Workspaces\Рабочая область\App-Billing\App-Billing\bin\AjaxControlToolkit.dll
+C:\Users\suhov.d\Source\Workspaces\Рабочая область\App-Billing\App-Billing\bin\AntiXssLibrary.dll
+C:\Users\suhov.d\Source\Workspaces\Рабочая область\App-Billing\App-Billing\bin\AntiXssLibrary.xml
+C:\Users\suhov.d\Source\Workspaces\Рабочая область\App-Billing\App-Billing\obj\Debug\App_Billing.Resources.resources
+C:\Users\suhov.d\Source\Workspaces\Рабочая область\App-Billing\App-Billing\obj\Debug\App-Billing.vbproj.GenerateResource.Cache
+C:\Users\suhov.d\Source\Workspaces\Рабочая область\App-Billing\App-Billing\obj\Debug\App-Billing.dll
+C:\Users\suhov.d\Source\Workspaces\Рабочая область\App-Billing\App-Billing\obj\Debug\App-Billing.xml
+C:\Users\suhov.d\Source\Workspaces\Рабочая область\App-Billing\App-Billing\obj\Debug\App-Billing.pdb
+C:\Users\suhov.d\Source\Workspaces\Рабочая область\App-Billing\App-Billing\obj\Debug\App-Billing.vbprojResolveAssemblyReference.cache

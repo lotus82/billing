@@ -1,0 +1,2401 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+App-Billing
+</name>
+</assembly>
+<members>
+<member name="P:App_Billing.My.MyWebExtension.Computer">
+	<summary>
+ Возвращает информацию о главном компьютере.
+ </summary>
+</member><member name="P:App_Billing.My.MyWebExtension.User">
+	<summary>
+ Возвращает сведения о текущем веб-пользователе.
+ </summary>
+</member><member name="P:App_Billing.My.MyWebExtension.Request">
+	<summary>
+ Возвращает объект Request.
+ </summary>
+</member><member name="P:App_Billing.My.MyWebExtension.Response">
+	<summary>
+ Возвращает объект Response.
+ </summary>
+</member><member name="P:App_Billing.My.MyWebExtension.Log">
+	<summary>
+ Возвращает объект журнала ASP.
+ </summary>
+</member><member name="T:App_Billing.My.MyWebExtension">
+	<summary>
+ Модуль, используемый для определения свойств, доступных в My Namespace для веб-проектов.
+ </summary>
+	<remarks></remarks>
+</member><member name="F:App_Billing.App1.Label_danger">
+	<summary>
+Label_danger элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel1">
+	<summary>
+UpdatePanel1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TabContainer1">
+	<summary>
+TabContainer1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TabPanelAddress">
+	<summary>
+TabPanelAddress элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_SEARCH_ADDRESS_MAIN">
+	<summary>
+UpdatePanel_SEARCH_ADDRESS_MAIN элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_UL">
+	<summary>
+DropDownList_UL элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_Bldn">
+	<summary>
+DropDownList_Bldn элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_FLT">
+	<summary>
+DropDownList_FLT элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.ImageButtonAddOCC_ID">
+	<summary>
+ImageButtonAddOCC_ID элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TabPanelOcc_id">
+	<summary>
+TabPanelOcc_id элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel2">
+	<summary>
+UpdatePanel2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label2">
+	<summary>
+Label2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox1">
+	<summary>
+TextBox1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_LS">
+	<summary>
+Button_LS элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TabPanelFIO">
+	<summary>
+TabPanelFIO элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_Familia">
+	<summary>
+Button_Familia элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_search_familia">
+	<summary>
+Label_search_familia элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_LS">
+	<summary>
+UpdatePanel_LS элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Panel3">
+	<summary>
+Panel3 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.GridView_LS">
+	<summary>
+GridView_LS элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_Detail">
+	<summary>
+UpdatePanel_Detail элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TabContainer_Detail">
+	<summary>
+TabContainer_Detail элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TabPanel_LS_info">
+	<summary>
+TabPanel_LS_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_Table_LS">
+	<summary>
+UpdatePanel_Table_LS элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_LS_info_header">
+	<summary>
+Label_LS_info_header элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Table_LS">
+	<summary>
+Table_LS элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Familia_Serch_1_ID">
+	<summary>
+TextBox_Familia_Serch_1_ID элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FTB11">
+	<summary>
+FTB11 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Dog_num">
+	<summary>
+TextBox_Dog_num элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FTB12">
+	<summary>
+FTB12 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_OCC_type">
+	<summary>
+DropDownList_OCC_type элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_OCC_status">
+	<summary>
+DropDownList_OCC_status элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_OCC_property">
+	<summary>
+DropDownList_OCC_property элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_SQ">
+	<summary>
+TextBox_SQ элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FTB13">
+	<summary>
+FTB13 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_SQ_info">
+	<summary>
+Label_SQ_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_SQ_live">
+	<summary>
+TextBox_SQ_live элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FTB14">
+	<summary>
+FTB14 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_SQ_live_info">
+	<summary>
+Label_SQ_live_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_SQ_hot">
+	<summary>
+TextBox_SQ_hot элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FTB15">
+	<summary>
+FTB15 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_SQ_hot_info">
+	<summary>
+Label_SQ_hot_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_SQ_MOP">
+	<summary>
+TextBox_SQ_MOP элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FTB16">
+	<summary>
+FTB16 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_SQ_MOP_info">
+	<summary>
+Label_SQ_MOP_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Real_live">
+	<summary>
+TextBox_Real_live элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FTB17">
+	<summary>
+FTB17 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Email">
+	<summary>
+TextBox_Email элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FTB18">
+	<summary>
+FTB18 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Email_info">
+	<summary>
+Label_Email_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Phone">
+	<summary>
+TextBox_Phone элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FTB19">
+	<summary>
+FTB19 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Phone_info">
+	<summary>
+Label_Phone_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Phone2">
+	<summary>
+TextBox_Phone2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FTB20">
+	<summary>
+FTB20 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Phone2_info">
+	<summary>
+Label_Phone2_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Kadastr">
+	<summary>
+TextBox_Kadastr элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FTB21">
+	<summary>
+FTB21 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_GIS">
+	<summary>
+TextBox_GIS элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FTB22">
+	<summary>
+FTB22 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Code">
+	<summary>
+TextBox_Code элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FTB23">
+	<summary>
+FTB23 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Start_date">
+	<summary>
+TextBox_Start_date элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_End_date">
+	<summary>
+TextBox_End_date элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_End_date_info">
+	<summary>
+Label_End_date_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_Is_closed">
+	<summary>
+DropDownList_Is_closed элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label1_Is_closed_info">
+	<summary>
+Label1_Is_closed_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TabPanel_User_info">
+	<summary>
+TabPanel_User_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_User_info">
+	<summary>
+UpdatePanel_User_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_User_info_header">
+	<summary>
+Label_User_info_header элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_User_Update_Error">
+	<summary>
+Label_User_Update_Error элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Panel_User_info">
+	<summary>
+Panel_User_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.GridView_User_info">
+	<summary>
+GridView_User_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_Reg_User">
+	<summary>
+Button_Reg_User элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Panel_Doc">
+	<summary>
+Panel_Doc элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.GridView_Doc">
+	<summary>
+GridView_Doc элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_Doc_Add">
+	<summary>
+Button_Doc_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TabPanel_Counters_info">
+	<summary>
+TabPanel_Counters_info элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_Counters">
+	<summary>
+UpdatePanel_Counters элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Counters_Header">
+	<summary>
+Label_Counters_Header элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Counters_Error">
+	<summary>
+Label_Counters_Error элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Panel1">
+	<summary>
+Panel1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.GridView_Counters">
+	<summary>
+GridView_Counters элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_Counter_Add">
+	<summary>
+Button_Counter_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TabPanel_Calc">
+	<summary>
+TabPanel_Calc элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_Calc">
+	<summary>
+UpdatePanel_Calc элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_Header">
+	<summary>
+Label_Calc_Header элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_Error">
+	<summary>
+Label_Calc_Error элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Panel_Calc">
+	<summary>
+Panel_Calc элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.GridView_Calc">
+	<summary>
+GridView_Calc элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_Calc_Add">
+	<summary>
+Button_Calc_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TabPanel_Calc_History">
+	<summary>
+TabPanel_Calc_History элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_Calc_History">
+	<summary>
+UpdatePanel_Calc_History элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_History_Header">
+	<summary>
+Label_Calc_History_Header элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_History_Error">
+	<summary>
+Label_Calc_History_Error элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Panel_Calc_History">
+	<summary>
+Panel_Calc_History элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.GridView_Calc_History">
+	<summary>
+GridView_Calc_History элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_Calc_History_Add">
+	<summary>
+Button_Calc_History_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_AddOCC_ID">
+	<summary>
+UpdatePanel_AddOCC_ID элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.lblModalOCC_ID">
+	<summary>
+lblModalOCC_ID элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBoxSQALL">
+	<summary>
+TextBoxSQALL элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender1">
+	<summary>
+FilteredTextBoxExtender1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBoxSQLIving">
+	<summary>
+TextBoxSQLIving элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender2">
+	<summary>
+FilteredTextBoxExtender2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBoxSQMOP">
+	<summary>
+TextBoxSQMOP элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender3">
+	<summary>
+FilteredTextBoxExtender3 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownListPRIV">
+	<summary>
+DropDownListPRIV элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownListOCC_TYPE">
+	<summary>
+DropDownListOCC_TYPE элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownListOCC_STATUS">
+	<summary>
+DropDownListOCC_STATUS элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBoxLName">
+	<summary>
+TextBoxLName элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBoxFName">
+	<summary>
+TextBoxFName элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBoxSNmame">
+	<summary>
+TextBoxSNmame элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBoxB_Date">
+	<summary>
+TextBoxB_Date элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBoxDateReg">
+	<summary>
+TextBoxDateReg элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownListP_Status">
+	<summary>
+DropDownListP_Status элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownListSexStatus">
+	<summary>
+DropDownListSexStatus элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.ButtonAddOCC_ID">
+	<summary>
+ButtonAddOCC_ID элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Add_OCC">
+	<summary>
+Label_Add_OCC элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel4">
+	<summary>
+UpdatePanel4 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label3">
+	<summary>
+Label3 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label4">
+	<summary>
+Label4 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox5">
+	<summary>
+TextBox5 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox6">
+	<summary>
+TextBox6 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox7">
+	<summary>
+TextBox7 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button1">
+	<summary>
+Button1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel3">
+	<summary>
+UpdatePanel3 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.GridView3">
+	<summary>
+GridView3 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_myModal_Arhiv_LS">
+	<summary>
+UpdatePanel_myModal_Arhiv_LS элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_myModal_Arhiv_LS_header">
+	<summary>
+Label_myModal_Arhiv_LS_header элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label7">
+	<summary>
+Label7 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label6">
+	<summary>
+Label6 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Reason_Arhiv">
+	<summary>
+Label_Reason_Arhiv элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Reason_arhiv">
+	<summary>
+TextBox_Reason_arhiv элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_myModal_Arhiv_LS">
+	<summary>
+Button_myModal_Arhiv_LS элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_User_Add">
+	<summary>
+UpdatePanel_User_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label1">
+	<summary>
+Label1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_User_Add_Error1">
+	<summary>
+Label_User_Add_Error1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_User_Add_Error2">
+	<summary>
+Label_User_Add_Error2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Add_User_Surname">
+	<summary>
+TextBox_Add_User_Surname элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender4">
+	<summary>
+FilteredTextBoxExtender4 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Add_User_Name">
+	<summary>
+TextBox_Add_User_Name элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender5">
+	<summary>
+FilteredTextBoxExtender5 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Add_User_Patronymic">
+	<summary>
+TextBox_Add_User_Patronymic элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender6">
+	<summary>
+FilteredTextBoxExtender6 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_User_Add_Date_Birth">
+	<summary>
+TextBox_User_Add_Date_Birth элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_User_Add_Date_Reg">
+	<summary>
+TextBox_User_Add_Date_Reg элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_User_Add_Reg_Type">
+	<summary>
+DropDownList_User_Add_Reg_Type элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_User_Add_Sex">
+	<summary>
+DropDownList_User_Add_Sex элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_User_Add_End_Reg">
+	<summary>
+TextBox_User_Add_End_Reg элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_User_Add_Who_ID">
+	<summary>
+DropDownList_User_Add_Who_ID элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_User_Add">
+	<summary>
+Button_User_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_User_Add_Error">
+	<summary>
+Label_User_Add_Error элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_User_Unreg">
+	<summary>
+UpdatePanel_User_Unreg элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label8">
+	<summary>
+Label8 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_User_Unreg_Error_1">
+	<summary>
+Label_User_Unreg_Error_1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_User_Unreg_Error_2">
+	<summary>
+Label_User_Unreg_Error_2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Date_Unreg">
+	<summary>
+TextBox_Date_Unreg элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_Unreg_status">
+	<summary>
+DropDownList_Unreg_status элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_Unreg">
+	<summary>
+Button_Unreg элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_User_Doc_Add">
+	<summary>
+UpdatePanel_User_Doc_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_User_Doc_Add_Header">
+	<summary>
+Label_User_Doc_Add_Header элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Add_User_Doc_Error1">
+	<summary>
+Label_Add_User_Doc_Error1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Add_User_Doc_Error2">
+	<summary>
+Label_Add_User_Doc_Error2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_User_Doc_Add_Type">
+	<summary>
+DropDownList_User_Doc_Add_Type элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_User_Doc_Add_Date">
+	<summary>
+TextBox_User_Doc_Add_Date элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_User_Doc_Add_Series">
+	<summary>
+TextBox_User_Doc_Add_Series элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_User_Doc_Add_Series_FTB">
+	<summary>
+TextBox_User_Doc_Add_Series_FTB элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_User_Doc_Add_Number">
+	<summary>
+TextBox_User_Doc_Add_Number элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_User_Doc_Add_Number_FTB">
+	<summary>
+TextBox_User_Doc_Add_Number_FTB элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_User_Doc_Add_Organization">
+	<summary>
+TextBox_User_Doc_Add_Organization элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_User_Doc_Add_Organization_FTB">
+	<summary>
+TextBox_User_Doc_Add_Organization_FTB элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_User_Doc_Add_Code">
+	<summary>
+TextBox_User_Doc_Add_Code элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_User_Doc_Add_Code_FTB">
+	<summary>
+TextBox_User_Doc_Add_Code_FTB элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_User_Doc_Add">
+	<summary>
+Button_User_Doc_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_User_doc_delete">
+	<summary>
+UpdatePanel_User_doc_delete элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label9">
+	<summary>
+Label9 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_User_Doc_Delete_Error1">
+	<summary>
+Label_User_Doc_Delete_Error1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_User_Doc_Delete_Error2">
+	<summary>
+Label_User_Doc_Delete_Error2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button5">
+	<summary>
+Button5 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_Counter_Add">
+	<summary>
+UpdatePanel_Counter_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Header_Counter_Add">
+	<summary>
+Label_Header_Counter_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Counter_Add_Error1">
+	<summary>
+Label_Counter_Add_Error1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Counter_Add_Error2">
+	<summary>
+Label_Counter_Add_Error2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_Counter_Add_Model">
+	<summary>
+DropDownList_Counter_Add_Model элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Counter_Add_Serial_Number">
+	<summary>
+TextBox_Counter_Add_Serial_Number элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Counter_Add_Serial_Number">
+	<summary>
+FilteredTextBoxExtender_Counter_Add_Serial_Number элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Counter_Add_Service">
+	<summary>
+TextBox_Counter_Add_Service элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Counter_Add_Current">
+	<summary>
+TextBox_Counter_Add_Current элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender7">
+	<summary>
+FilteredTextBoxExtender7 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_Counter_Add_Type">
+	<summary>
+DropDownList_Counter_Add_Type элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Counter_Add_Last">
+	<summary>
+TextBox_Counter_Add_Last элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender8">
+	<summary>
+FilteredTextBoxExtender8 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Counter_Add_Max">
+	<summary>
+TextBox_Counter_Add_Max элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Counter_Add_Max">
+	<summary>
+FilteredTextBoxExtender_Counter_Add_Max элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Counter_Add_Date_Install">
+	<summary>
+TextBox_Counter_Add_Date_Install элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Counter_Add_Koeff">
+	<summary>
+TextBox_Counter_Add_Koeff элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Counter_Add_Koeff">
+	<summary>
+FilteredTextBoxExtender_Counter_Add_Koeff элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Counter_Add_Date_Comission">
+	<summary>
+TextBox_Counter_Add_Date_Comission элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Counter_Add_Date_Of_Last_Verification">
+	<summary>
+TextBox_Counter_Add_Date_Of_Last_Verification элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Counter_Add_Date_Plant_Mark">
+	<summary>
+TextBox_Counter_Add_Date_Plant_Mark элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_Counter_Add_Complete">
+	<summary>
+Button_Counter_Add_Complete элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_Calc_Add">
+	<summary>
+UpdatePanel_Calc_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Header_Calc_Add">
+	<summary>
+Label_Header_Calc_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_Add_Error1">
+	<summary>
+Label_Calc_Add_Error1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_Add_Error2">
+	<summary>
+Label_Calc_Add_Error2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_Add_Tarif">
+	<summary>
+TextBox_Calc_Add_Tarif элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_Add_Tarif">
+	<summary>
+FilteredTextBoxExtender_Calc_Add_Tarif элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_Add_Units">
+	<summary>
+TextBox_Calc_Add_Units элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_Add_Units">
+	<summary>
+FilteredTextBoxExtender_Calc_Add_Units элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_Add_Cntr_Units">
+	<summary>
+TextBox_Calc_Add_Cntr_Units элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_Add_Cntr_Units">
+	<summary>
+FilteredTextBoxExtender_Calc_Add_Cntr_Units элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_Add_Norm_Units">
+	<summary>
+TextBox_Calc_Add_Norm_Units элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_Add_Norm_Units">
+	<summary>
+FilteredTextBoxExtender_Calc_Add_Norm_Units элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_Add_Saldo">
+	<summary>
+TextBox_Calc_Add_Saldo элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_Add_Saldo">
+	<summary>
+FilteredTextBoxExtender_Calc_Add_Saldo элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_Add_Value">
+	<summary>
+TextBox_Calc_Add_Value элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_Add_Value">
+	<summary>
+FilteredTextBoxExtender_Calc_Add_Value элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_Add_Added">
+	<summary>
+TextBox_Calc_Add_Added элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_Add_Added">
+	<summary>
+FilteredTextBoxExtender_Calc_Add_Added элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_Add_Paid">
+	<summary>
+TextBox_Calc_Add_Paid элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_Add_Paid">
+	<summary>
+FilteredTextBoxExtender_Calc_Add_Paid элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_Add_Penalties">
+	<summary>
+TextBox_Calc_Add_Penalties элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_Add_Penalties">
+	<summary>
+FilteredTextBoxExtender_Calc_Add_Penalties элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_Calc_Add_Complete">
+	<summary>
+Button_Calc_Add_Complete элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_Counter_delete">
+	<summary>
+UpdatePanel_Counter_delete элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Counter_Dell_Header">
+	<summary>
+Label_Counter_Dell_Header элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Counter_Delete_Error1">
+	<summary>
+Label_Counter_Delete_Error1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Counter_Delete_Error2">
+	<summary>
+Label_Counter_Delete_Error2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_Counter_Dell">
+	<summary>
+Button_Counter_Dell элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_Calc_delete">
+	<summary>
+UpdatePanel_Calc_delete элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_Dell_Header">
+	<summary>
+Label_Calc_Dell_Header элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_Delete_Error1">
+	<summary>
+Label_Calc_Delete_Error1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_Delete_Error2">
+	<summary>
+Label_Calc_Delete_Error2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_Calc_Dell">
+	<summary>
+Button_Calc_Dell элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_Calc_History_delete">
+	<summary>
+UpdatePanel_Calc_History_delete элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_History_Dell_Header">
+	<summary>
+Label_Calc_History_Dell_Header элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_History_Delete_Error1">
+	<summary>
+Label_Calc_History_Delete_Error1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_History_Delete_Error2">
+	<summary>
+Label_Calc_History_Delete_Error2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_Calc_History_Dell">
+	<summary>
+Button_Calc_History_Dell элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.UpdatePanel_Calc_History_Add">
+	<summary>
+UpdatePanel_Calc_History_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Header_Calc_History_Add">
+	<summary>
+Label_Header_Calc_History_Add элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_History_Add_Error1">
+	<summary>
+Label_Calc_History_Add_Error1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Label_Calc_History_Add_Error2">
+	<summary>
+Label_Calc_History_Add_Error2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_Calc_History_Add_FT">
+	<summary>
+DropDownList_Calc_History_Add_FT элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_Calc_History_Add_Service">
+	<summary>
+DropDownList_Calc_History_Add_Service элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.DropDownList_Calc_History_Add_Tar_ID">
+	<summary>
+DropDownList_Calc_History_Add_Tar_ID элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_History_Add_Norm_Coeff">
+	<summary>
+TextBox_Calc_History_Add_Norm_Coeff элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_History_Add_Norm_Coeff">
+	<summary>
+FilteredTextBoxExtender_Calc_History_Add_Norm_Coeff элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_History_Add_Units">
+	<summary>
+TextBox_Calc_History_Add_Units элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_History_Add_Units">
+	<summary>
+FilteredTextBoxExtender_Calc_History_Add_Units элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_History_Add_Cntr_Units">
+	<summary>
+TextBox_Calc_History_Add_Cntr_Units элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_History_Add_Cntr_Units">
+	<summary>
+FilteredTextBoxExtender_Calc_History_Add_Cntr_Units элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_History_Add_Norm_Units">
+	<summary>
+TextBox_Calc_History_Add_Norm_Units элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_History_Add_Norm_Units">
+	<summary>
+FilteredTextBoxExtender_Calc_History_Add_Norm_Units элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_History_Add_Saldo">
+	<summary>
+TextBox_Calc_History_Add_Saldo элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_History_Add_Saldo">
+	<summary>
+FilteredTextBoxExtender_Calc_History_Add_Saldo элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_History_Add_Value">
+	<summary>
+TextBox_Calc_History_Add_Value элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_History_Add_Value">
+	<summary>
+FilteredTextBoxExtender_Calc_History_Add_Value элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_History_Add_Added">
+	<summary>
+TextBox_Calc_History_Add_Added элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_History_Add_Added">
+	<summary>
+FilteredTextBoxExtender_Calc_History_Add_Added элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_History_Add_Paid">
+	<summary>
+TextBox_Calc_History_Add_Paid элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_History_Add_Paid">
+	<summary>
+FilteredTextBoxExtender_Calc_History_Add_Paid элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.TextBox_Calc_History_Add_Penalties">
+	<summary>
+TextBox_Calc_History_Add_Penalties элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.FilteredTextBoxExtender_Calc_History_Add_Penalties">
+	<summary>
+FilteredTextBoxExtender_Calc_History_Add_Penalties элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App1.Button_Calc_History_Add_Complete">
+	<summary>
+Button_Calc_History_Add_Complete элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.Label_danger">
+	<summary>
+Label_danger элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.DropDownList_UL">
+	<summary>
+DropDownList_UL элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.GridViewBuildings">
+	<summary>
+GridViewBuildings элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.SqlDataSourceBuildings">
+	<summary>
+SqlDataSourceBuildings элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.SqlDataSourceIndex">
+	<summary>
+SqlDataSourceIndex элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.SqlDataSourceTech">
+	<summary>
+SqlDataSourceTech элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.upModal">
+	<summary>
+upModal элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.ButtonClosed">
+	<summary>
+ButtonClosed элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.lblModalTitle">
+	<summary>
+lblModalTitle элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.TextBoxFlat1">
+	<summary>
+TextBoxFlat1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.FilteredTextBoxExtenderTextBoxFlat1">
+	<summary>
+FilteredTextBoxExtenderTextBoxFlat1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.TextBoxFlat2">
+	<summary>
+TextBoxFlat2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.FilteredTextBoxExtenderTextBoxFlat2">
+	<summary>
+FilteredTextBoxExtenderTextBoxFlat2 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.ButtonAddOcc">
+	<summary>
+ButtonAddOcc элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.GridViewFlats">
+	<summary>
+GridViewFlats элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.SqlDataSourceFlats">
+	<summary>
+SqlDataSourceFlats элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.LabelChangeSucces">
+	<summary>
+LabelChangeSucces элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.UpdatePanelError">
+	<summary>
+UpdatePanelError элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Buidings_List.LabelChangeError">
+	<summary>
+LabelChangeError элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Login.ButtonLogin">
+	<summary>
+ButtonLogin элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.Login.LabelInfo">
+	<summary>
+LabelInfo элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.ExitForm.form1">
+	<summary>
+элемент управления form1.
+</summary>
+	<remarks>
+Автоматически созданное поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="P:App_Billing.My.Resources.Resources.ResourceManager">
+	<summary>
+  Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
+</summary>
+</member><member name="P:App_Billing.My.Resources.Resources.Culture">
+	<summary>
+  Перезаписывает свойство CurrentUICulture текущего потока для всех
+  обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
+</summary>
+</member><member name="T:App_Billing.My.Resources.Resources">
+	<summary>
+  Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
+</summary>
+</member><member name="F:App_Billing.App.head">
+	<summary>
+head элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App.form1">
+	<summary>
+form1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App.LinkButtonHome">
+	<summary>
+LinkButtonHome элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App.btnEnter">
+	<summary>
+btnEnter элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App.ScriptManager1">
+	<summary>
+ScriptManager1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App.ContentPlaceHolder1">
+	<summary>
+ContentPlaceHolder1 элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member><member name="F:App_Billing.App.Label_footer">
+	<summary>
+Label_footer элемент управления.
+</summary>
+	<remarks>
+Автоматически создаваемое поле.
+Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+</remarks>
+</member>
+</members>
+</doc>
