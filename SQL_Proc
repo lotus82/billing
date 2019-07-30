@@ -1,0 +1,1390 @@
+USE [BILLING]
+GO
+/****** Object:  StoredProcedure [dbo].[APP_CALC_EDIT]    Script Date: 30.07.2019 20:59:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER proc [dbo].[APP_CALC_EDIT]
+	(@type int,@SERVICE_ID char(4),@OCC_ID bigint,@UNITS decimal(18,6)=null,@CNTR_UNITS decimal(18,6)=null,@NORM_UNITS decimal(18,6)=null
+	,@NORM_COEFF decimal(18,6)=null,@USE_NORM_COEFF int=null,@PR_DAYS int=null
+	,@PR_MONTHS int=null,@LAST_PAID date=null,@SALDO money=null
+	,@VALUE money=null,@ADDED money=null,@PAID money=null,@PENALTIES money=null
+	,@OPER_GUID uniqueidentifier,@APP_GUID uniqueidentifier,@HOST varchar(50) )
+AS
+
+	declare @STREET_ID int,@BLDN_ID int,@FLAT_ID int
+	declare @User_GUID uniqueidentifier
+	declare @err_text varchar(200)
+	declare @city int
+	select top 1 @city= ID_city from Cities
+	declare 
+		@UNITS_OLD decimal(18,6)=null,@CNTR_UNITS_OLD decimal(18,6)=null,@NORM_UNITS_OLD decimal(18,6)=null
+		,@NORM_COEFF_OLD decimal(18,6)=null,@USE_NORM_COEFF_OLD int=null,@PR_DAYS_OLD int=null
+		,@PR_MONTHS_OLD int=null,@LAST_PAID_OLD date=null,@SALDO_OLD money=null
+		,@VALUE_OLD money=null,@ADDED_OLD money=null,@PAID_OLD money=null,@PENALTIES_OLD money=null
+		,@text_log varchar(3000)=''
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------Редактирование начисления---------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------
+if @type=1
+BEGIN 
+
+	if rtrim(ltrim(cast(@UNITS as varchar (50))))='' or @UNITS is null
+	begin
+		raiserror ('Поле "Единицы" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@CNTR_UNITS as varchar (50))))='' or @CNTR_UNITS is null
+	begin
+		raiserror ('Поле "Ед. прибора" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@NORM_UNITS as varchar (50))))='' or @NORM_UNITS is null
+	begin
+		raiserror ('Поле "Ед. нормы" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@NORM_COEFF as varchar (50))))='' or @NORM_COEFF is null
+	begin
+		raiserror ('Поле "Коэффициент нормы" не может быть пустым',11,1)
+		return -1
+	end
+
+	set @text_log=@text_log+'Адрес: ' + dbo.Fn_address(@OCC_ID)  + ' :: '
+	select @STREET_ID=s.ID_streets,@BLDN_ID=b.ID_build,@FLAT_ID=f.ID_flats from Streets s,Builds b,Flats f,OCC_LIST o
+	where  s.ID_streets=b.ID_streets and b.ID_build = f.ID_build and f.ID_flats =o.FLAT_ID 
+			and o.ID=@OCC_ID
+
+	select
+		@UNITS_OLD=UNITS,@CNTR_UNITS_OLD=CNTR_UNITS,@NORM_UNITS_OLD=NORM_UNITS
+		,@NORM_COEFF_OLD=NORM_COEFF,@USE_NORM_COEFF_OLD=USE_NORM_COEFF,@PR_DAYS_OLD=PR_DAYS
+		,@PR_MONTHS_OLD=PR_MONTHS,@LAST_PAID_OLD=LAST_PAID,@SALDO_OLD=SALDO
+		,@VALUE_OLD=VALUE,@ADDED_OLD=ADDED,@PAID_OLD=PAID,@PENALTIES_OLD=PENALTIES
+	from OCC_CALC_LIST where OCC_ID=@OCC_ID and SERVICE_ID=@SERVICE_ID
+
+	declare @r int = 0 
+
+	if @UNITS_OLD<>@UNITS
+	begin
+		set @text_log=@text_log + 'Редактирование единиц > ' + cast(@UNITS_OLD as varchar(30)) + ' >> '+ cast(@UNITS as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @CNTR_UNITS_OLD<>@CNTR_UNITS
+	begin
+		set @text_log=@text_log + 'Редактирование единиц прибора > ' + cast(@CNTR_UNITS_OLD as varchar(30)) + ' >> '+ cast(@CNTR_UNITS as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @NORM_UNITS_OLD<>@NORM_UNITS
+	begin
+		set @text_log=@text_log + 'Редактирование единиц нормы > ' + cast(@NORM_UNITS_OLD as varchar(30)) + ' >> '+ cast(@NORM_UNITS as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @NORM_COEFF_OLD<>@NORM_COEFF
+	begin
+		set @text_log=@text_log + 'Редактирование коэффициента нормы > ' + cast(@NORM_COEFF_OLD as varchar(30)) + ' >> '+ cast(@NORM_COEFF as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @USE_NORM_COEFF_OLD<>@USE_NORM_COEFF
+	begin
+		set @text_log=@text_log + 'Редактирование использования коэффициента нормы > ' + cast(@USE_NORM_COEFF_OLD as varchar(30)) + ' >> '+ cast(@USE_NORM_COEFF as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @PR_DAYS_OLD<>@PR_DAYS
+	begin
+		set @text_log=@text_log + 'Редактирование пр. дня > ' + cast(@PR_DAYS_OLD as varchar(30)) + ' >> '+ cast(@PR_DAYS as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @PR_MONTHS_OLD<>@PR_MONTHS
+	begin
+		set @text_log=@text_log + 'Редактирование пр. месяца > ' + cast(@PR_MONTHS_OLD as varchar(30)) + ' >> '+ cast(@PR_MONTHS as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if ((cast(isnull(@LAST_PAID_OLD,'') as varchar(30)) <> cast(isnull(@LAST_PAID,'') as varchar(30))))
+	begin
+		set @text_log=@text_log + 'Редактирование последнего платежа > ' + cast(isnull(@LAST_PAID_OLD,'') as varchar(30)) + ' >> '+ cast(isnull(@LAST_PAID,'') as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @SALDO_OLD<>@SALDO
+	begin
+		set @text_log=@text_log + 'Редактирование сальдо > ' + cast(@SALDO_OLD as varchar(30)) + ' >> '+ cast(@SALDO as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @VALUE_OLD<>@VALUE
+	begin
+		set @text_log=@text_log + 'Редактирование значения > ' + cast(@VALUE_OLD as varchar(30)) + ' >> '+ cast(@VALUE as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @ADDED_OLD<>@ADDED
+	begin
+		set @text_log=@text_log + 'Редактирование добавки > ' + cast(@ADDED_OLD as varchar(30)) + ' >> '+ cast(@ADDED as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @PAID_OLD<>@PAID
+	begin
+		set @text_log=@text_log + 'Редактирование платежа > ' + cast(@PAID_OLD as varchar(30)) + ' >> '+ cast(@PAID as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @PENALTIES_OLD<>@PENALTIES
+	begin
+		set @text_log=@text_log + 'Редактирование штрафа > ' + cast(@PENALTIES_OLD as varchar(30)) + ' >> '+ cast(@PENALTIES as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @r=1
+	begin
+	
+		BEGIN TRAN
+
+			insert into LOG_BILIING(OPER_GUID,ACTION_ID,CITY_ID,STREET_ID,BLDN_ID,FLAT_ID,OCC_ID,HOST,APP_GUID,COMENT)
+			values (@OPER_GUID,2078,@city,@STREET_ID,@BLDN_ID,@FLAT_ID,@OCC_ID,@HOST,@APP_GUID,@text_log)
+
+			if @@ERROR<>0
+				begin
+				goto _err
+			end
+
+			------------------------------------------------------------------------------------------------------------------------------------------
+			UPDATE OCC_CALC_LIST
+			SET
+				UNITS=@UNITS,CNTR_UNITS=@CNTR_UNITS,NORM_UNITS=@NORM_UNITS
+				,NORM_COEFF=@NORM_COEFF,USE_NORM_COEFF=@USE_NORM_COEFF,PR_DAYS=@PR_DAYS
+				,PR_MONTHS=@PR_MONTHS,LAST_PAID=@LAST_PAID,SALDO=@SALDO
+				,VALUE=@VALUE,ADDED=@ADDED,PAID=@PAID,PENALTIES=@PENALTIES
+			WHERE OCC_ID=@OCC_ID and SERVICE_ID=@SERVICE_ID
+			------------------------------------------------------------------------------------------------------------------------------------------
+
+			if @@ERROR<>0
+				begin
+				goto _err
+			end
+
+		COMMIT TRAN
+	end
+
+END
+--------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------Удаление начисления---------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------
+if @type = 4
+BEGIN
+
+	set @text_log=@text_log+'Адрес: ' + dbo.Fn_address(@OCC_ID)  + ' :: ' 
+	select @STREET_ID=s.ID_streets,@BLDN_ID=b.ID_build,@FLAT_ID=f.ID_flats from Streets s,Builds b,Flats f,OCC_LIST o
+	where  s.ID_streets=b.ID_streets and b.ID_build = f.ID_build and f.ID_flats =o.FLAT_ID 
+			and o.ID=@OCC_ID
+
+	set @text_log=@text_log+'Удаление начисления > ' +  ' OCC ' + cast(@OCC_ID as varchar(50)) + ' SERVISE_ID ' + cast(@SERVICE_ID as varchar(50))  
+
+	BEGIN TRAN
+
+		insert into LOG_BILIING(OPER_GUID,ACTION_ID,CITY_ID,STREET_ID,BLDN_ID,FLAT_ID,OCC_ID,HOST,APP_GUID,COMENT)
+		values (@OPER_GUID,2076,@city,@STREET_ID,@BLDN_ID,@FLAT_ID,@OCC_ID,@HOST,@APP_GUID,@text_log)
+
+		if @@ERROR<>0
+		begin
+			goto _err
+		end
+
+		------------------------------------------------------------------------------------------------------------------------------------------
+		DELETE FROM OCC_CALC_LIST WHERE OCC_ID=@OCC_ID and SERVICE_ID=@SERVICE_ID
+		------------------------------------------------------------------------------------------------------------------------------------------
+
+		if @@ERROR<>0
+		begin
+			goto _err
+		end
+
+	COMMIT TRAN
+
+END
+--------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------Добавление начисления-------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------
+if @type=3
+BEGIN 
+
+	select @User_GUID=GUID_user from Users where LS=@OCC_ID and WHO_ID='отвл'
+	set @text_log=@text_log+'Адрес: ' + dbo.Fn_address(@OCC_ID)  + ' (' + dbo.Fn_FIO(@User_GUID) + ') :: '
+	select @STREET_ID=s.ID_streets,@BLDN_ID=b.ID_build,@FLAT_ID=f.ID_flats from Streets s,Builds b,Flats f,OCC_LIST o
+	where  s.ID_streets=b.ID_streets and b.ID_build = f.ID_build and f.ID_flats =o.FLAT_ID 
+			and o.ID=@OCC_ID
+
+	BEGIN TRAN
+
+		set @text_log=@text_log+'Добавление начисления: OCC ' + cast(@OCC_ID as varchar(50)) + ' SERVICE_ID ' + @SERVICE_ID
+		insert into LOG_BILIING(OPER_GUID,ACTION_ID,CITY_ID,STREET_ID,BLDN_ID,FLAT_ID,OCC_ID,HOST,APP_GUID,COMENT)
+		values (@OPER_GUID,2077,@city,@STREET_ID,@BLDN_ID,@FLAT_ID,@OCC_ID,@HOST,@APP_GUID,@text_log)
+
+		if @@ERROR<>0
+		begin
+			goto _err
+		end
+
+		declare @TAR_ID int
+		select @TAR_ID=TARIFF_ID from BUILDS_TARIFS where BLDN_ID=@BLDN_ID and SERVICE_ID=@SERVICE_ID
+
+		------------------------------------------------------------------------------------------------------------------------------------------
+		INSERT INTO OCC_CALC_LIST
+			(OCC_ID,SERVICE_ID,BLDN_ID,TAR_ID,UNITS,CNTR_UNITS,NORM_UNITS,NORM_COEFF
+			,USE_NORM_COEFF,PR_DAYS,PR_MONTHS,SALDO,VALUE,ADDED,PAID,PENALTIES)
+		VALUES
+			(@OCC_ID,@SERVICE_ID,@BLDN_ID,@TAR_ID,@UNITS,@CNTR_UNITS,@NORM_UNITS,@NORM_COEFF
+			,@USE_NORM_COEFF,@PR_DAYS,@PR_MONTHS,@SALDO,@VALUE,@ADDED,@PAID,@PENALTIES)
+		------------------------------------------------------------------------------------------------------------------------------------------
+
+		if @@ERROR<>0
+		begin
+			goto _err
+		end
+
+	COMMIT TRAN
+
+END
+----------------------------------------Конец процедуры-------------------------------------------------------------------------------------------
+RETURN 0
+_err:
+ROLLBACK TRAN
+
+USE [BILLING]
+GO
+/****** Object:  StoredProcedure [dbo].[APP_CALC]    Script Date: 30.07.2019 20:59:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[APP_CALC] 
+(@LS int, @OPER_GUID uniqueidentifier, @app_guid uniqueidentifier)
+as
+
+declare @role int
+--==select @role=ROLE_ID from Opers where GUID_oper=@OPER_GUID
+select top 1 @role=ROLE_ID from OPERS_ROLES ro where OPER_GUID=@OPER_GUID 
+if @role is null
+begin
+return -1
+end
+
+if not exists(select * from app
+where APP_GUID=@app_guid and is_admin=0)
+begin
+raiserror ('Вызов запрещен',11,1)
+return -1
+end
+
+select ocl.*, t.TAR_NAME,s.[Service_Name] from OCC_CALC_LIST ocl, TARIFFS t, [Services] s
+ where t.TAR_ID=ocl.TAR_ID and s.ID_Service=ocl.SERVICE_ID and OCC_ID=@LS
+
+USE [BILLING]
+GO
+/****** Object:  StoredProcedure [dbo].[APP_CALC_HISTORY]    Script Date: 30.07.2019 21:00:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[APP_CALC_HISTORY] 
+(@LS int, @OPER_GUID uniqueidentifier, @app_guid uniqueidentifier)
+as
+
+declare @role int
+--==select @role=ROLE_ID from Opers where GUID_oper=@OPER_GUID
+select top 1 @role=ROLE_ID from OPERS_ROLES ro where OPER_GUID=@OPER_GUID 
+if @role is null
+begin
+return -1
+end
+
+if not exists(select * from app
+where APP_GUID=@app_guid and is_admin=0)
+begin
+raiserror ('Вызов запрещен',11,1)
+return -1
+end
+
+select oclh.*, s.[Service_Name], t.TAR_NAME, SUBSTRING(CONVERT(varchar, f.[START_DATE], 106),4,8) as FT_DATE  from OCC_CALC_LIST_HISTORY oclh, [Services] s, TARIFFS t, FT f
+ where s.ID_Service=oclh.SERVICE_ID  and t.TAR_ID=oclh.TAR_ID and oclh.FT_ID=f.ID and oclh.OCC_ID=@LS
+
+USE [BILLING]
+GO
+/****** Object:  StoredProcedure [dbo].[APP_CALC_HISTORY_EDIT]    Script Date: 30.07.2019 21:00:51 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER proc [dbo].[APP_CALC_HISTORY_EDIT]
+	(@type int,@SERVICE_ID char(4),@OCC_ID bigint,@UNITS decimal(18,6)=null,@CNTR_UNITS decimal(18,6)=null,@NORM_UNITS decimal(18,6)=null
+	,@NORM_COEFF decimal(18,6)=null,@FT_ID int=null,@CALC_STATUS int=null,@CNTR_STATUS int=null
+	,@SALDO money=null,@TAR_ID int=null
+	,@VALUE money=null,@ADDED money=null,@PAID money=null,@PENALTIES money=null
+	,@OPER_GUID uniqueidentifier,@APP_GUID uniqueidentifier,@HOST varchar(50) )
+AS
+
+	declare @STREET_ID int,@BLDN_ID int,@FLAT_ID int
+	declare @User_GUID uniqueidentifier
+	declare @err_text varchar(200)
+	declare @city int
+	select top 1 @city= ID_city from Cities
+	declare @UNITS_OLD decimal(18,6)=null,@CNTR_UNITS_OLD decimal(18,6)=null,@NORM_UNITS_OLD decimal(18,6)=null
+			,@NORM_COEFF_OLD decimal(18,6)=null,@FT_ID_OLD int=null,@CALC_STATUS_OLD int=null,@CNTR_STATUS_OLD int=null
+			,@SALDO_OLD money=null
+			,@VALUE_OLD money=null,@ADDED_OLD money=null,@PAID_OLD money=null,@PENALTIES_OLD money=null
+			,@text_log varchar(3000)=''
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------Редактирование истории начислений------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------
+if @type=1
+BEGIN 
+
+	if rtrim(ltrim(cast(@UNITS as varchar (50))))='' or @UNITS is null
+	begin
+		raiserror ('Поле "Единицы" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@CNTR_UNITS as varchar (50))))='' or @CNTR_UNITS is null
+	begin
+		raiserror ('Поле "Ед. прибора" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@NORM_UNITS as varchar (50))))='' or @NORM_UNITS is null
+	begin
+		raiserror ('Поле "Ед. нормы" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@NORM_COEFF as varchar (50))))='' or @NORM_COEFF is null
+	begin
+		raiserror ('Поле "Коэффициент нормы" не может быть пустым',11,1)
+		return -1
+	end
+
+	set @text_log=@text_log+'Адрес: ' + dbo.Fn_address(@OCC_ID)  + ' :: '
+	select @STREET_ID=s.ID_streets,@BLDN_ID=b.ID_build,@FLAT_ID=f.ID_flats from Streets s,Builds b,Flats f,OCC_LIST o
+	where  s.ID_streets=b.ID_streets and b.ID_build = f.ID_build and f.ID_flats =o.FLAT_ID 
+			and o.ID=@OCC_ID
+
+	select
+		@UNITS_OLD=UNITS,@CNTR_UNITS_OLD=CNTR_UNITS,@NORM_UNITS_OLD=NORM_UNITS
+		,@NORM_COEFF_OLD=NORM_COEFF,@FT_ID_OLD=FT_ID,@CALC_STATUS_OLD=CALC_STATUS,@CNTR_STATUS_OLD=CNTR_STATUS
+		,@SALDO_OLD=SALDO
+		,@VALUE_OLD=VALUE,@ADDED_OLD=ADDED,@PAID_OLD=PAID,@PENALTIES_OLD=PENALTIES
+	from OCC_CALC_LIST_HISTORY where OCC_ID=@OCC_ID and SERVICE_ID=@SERVICE_ID
+
+	declare @r int = 0 
+
+	if @UNITS_OLD<>@UNITS
+	begin
+		set @text_log=@text_log + 'Редактирование единиц > ' + cast(@UNITS_OLD as varchar(30)) + ' >> '+ cast(@UNITS as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @CNTR_UNITS_OLD<>@CNTR_UNITS
+	begin
+		set @text_log=@text_log + 'Редактирование единиц прибора > ' + cast(@CNTR_UNITS_OLD as varchar(30)) + ' >> '+ cast(@CNTR_UNITS as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @FT_ID_OLD<>@FT_ID
+	begin
+		set @text_log=@text_log + 'Редактирование финансового периода > ' + cast(@FT_ID_OLD as varchar(30)) + ' >> '+ cast(@FT_ID as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @CALC_STATUS_OLD<>@CALC_STATUS
+	begin
+		set @text_log=@text_log + 'Редактирование статуса начисления > ' + cast(@CALC_STATUS_OLD as varchar(30)) + ' >> '+ cast(@CALC_STATUS as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @CNTR_STATUS_OLD<>@CNTR_STATUS
+	begin
+		set @text_log=@text_log + 'Редактирование статуса прибора > ' + cast(@CNTR_STATUS_OLD as varchar(30)) + ' >> '+ cast(@CNTR_STATUS as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @NORM_UNITS_OLD<>@NORM_UNITS
+	begin
+		set @text_log=@text_log + 'Редактирование единиц нормы > ' + cast(@NORM_UNITS_OLD as varchar(30)) + ' >> '+ cast(@NORM_UNITS as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @NORM_COEFF_OLD<>@NORM_COEFF
+	begin
+		set @text_log=@text_log + 'Редактирование коэффициента нормы > ' + cast(@NORM_COEFF_OLD as varchar(30)) + ' >> '+ cast(@NORM_COEFF as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @SALDO_OLD<>@SALDO
+	begin
+		set @text_log=@text_log + 'Редактирование сальдо > ' + cast(@SALDO_OLD as varchar(30)) + ' >> '+ cast(@SALDO as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @VALUE_OLD<>@VALUE
+	begin
+		set @text_log=@text_log + 'Редактирование значения > ' + cast(@VALUE_OLD as varchar(30)) + ' >> '+ cast(@VALUE as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @ADDED_OLD<>@ADDED
+	begin
+		set @text_log=@text_log + 'Редактирование добавки > ' + cast(@ADDED_OLD as varchar(30)) + ' >> '+ cast(@ADDED as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @PAID_OLD<>@PAID
+	begin
+		set @text_log=@text_log + 'Редактирование платежа > ' + cast(@PAID_OLD as varchar(30)) + ' >> '+ cast(@PAID as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @PENALTIES_OLD<>@PENALTIES
+	begin
+		set @text_log=@text_log + 'Редактирование штрафа > ' + cast(@PENALTIES_OLD as varchar(30)) + ' >> '+ cast(@PENALTIES as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @r=1
+	begin
+	
+		BEGIN TRAN
+
+			insert into LOG_BILIING(OPER_GUID,ACTION_ID,CITY_ID,STREET_ID,BLDN_ID,FLAT_ID,OCC_ID,HOST,APP_GUID,COMENT)
+			values (@OPER_GUID,2081,@city,@STREET_ID,@BLDN_ID,@FLAT_ID,@OCC_ID,@HOST,@APP_GUID,@text_log)
+
+			if @@ERROR<>0
+			begin
+				goto _err
+			end
+
+			------------------------------------------------------------------------------------------------------------------------------------
+			UPDATE OCC_CALC_LIST_HISTORY
+			SET	UNITS=@UNITS,CNTR_UNITS=@CNTR_UNITS,NORM_UNITS=@NORM_UNITS
+				,NORM_COEFF=@NORM_COEFF
+				,SALDO=@SALDO
+				,VALUE=@VALUE,ADDED=@ADDED,PAID=@PAID,PENALTIES=@PENALTIES
+			WHERE OCC_ID=@OCC_ID and SERVICE_ID=@SERVICE_ID
+			------------------------------------------------------------------------------------------------------------------------------------
+
+			if @@ERROR<>0
+			begin
+				goto _err
+			end
+
+		COMMIT TRAN
+	end
+
+END
+-------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------Удаление из истории начислений---------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------
+if @type = 4
+BEGIN
+
+	set @text_log=@text_log+'Адрес: ' + dbo.Fn_address(@OCC_ID)  + ' :: ' 
+	select @STREET_ID=s.ID_streets,@BLDN_ID=b.ID_build,@FLAT_ID=f.ID_flats from Streets s,Builds b,Flats f,OCC_LIST o
+	where  s.ID_streets=b.ID_streets and b.ID_build = f.ID_build and f.ID_flats =o.FLAT_ID 
+			and o.ID=@OCC_ID
+
+	set @text_log=@text_log+'Удаление из истории начислений > ' +  ' OCC ' + cast(@OCC_ID as varchar(50)) + ' SERVISE_ID ' + cast(@SERVICE_ID as varchar(50))  
+
+	BEGIN TRAN
+
+		insert into LOG_BILIING(OPER_GUID,ACTION_ID,CITY_ID,STREET_ID,BLDN_ID,FLAT_ID,OCC_ID,HOST,APP_GUID,COMENT)
+		values (@OPER_GUID,2079,@city,@STREET_ID,@BLDN_ID,@FLAT_ID,@OCC_ID,@HOST,@APP_GUID,@text_log)
+
+		if @@ERROR<>0
+		begin
+			goto _err
+		end
+
+		-----------------------------------------------------------------------------------------------------------------------------------------
+		DELETE FROM OCC_CALC_LIST_HISTORY WHERE OCC_ID=@OCC_ID and SERVICE_ID=@SERVICE_ID and FT_ID=@FT_ID
+		-----------------------------------------------------------------------------------------------------------------------------------------
+
+		if @@ERROR<>0
+		begin
+		goto _err
+		end
+
+	COMMIT TRAN
+
+END
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------Добавление в историю начислений--------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------
+if @type=3
+BEGIN 
+
+	select @User_GUID=GUID_user from Users where LS=@OCC_ID and WHO_ID='отвл'
+	set @text_log=@text_log+'Адрес: ' + dbo.Fn_address(@OCC_ID)  + ' (' + dbo.Fn_FIO(@User_GUID) + ') :: '
+	select @STREET_ID=s.ID_streets,@BLDN_ID=b.ID_build,@FLAT_ID=f.ID_flats from Streets s,Builds b,Flats f,OCC_LIST o
+	where  s.ID_streets=b.ID_streets and b.ID_build = f.ID_build and f.ID_flats =o.FLAT_ID 
+			and o.ID=@OCC_ID
+
+	BEGIN TRAN
+
+		set @text_log=@text_log+'Добавление в историю начислений: OCC ' + cast(@OCC_ID as varchar(30)) + ' SERVICE_ID ' + cast(@SERVICE_ID as varchar(30))
+		insert into LOG_BILIING(OPER_GUID,ACTION_ID,CITY_ID,STREET_ID,BLDN_ID,FLAT_ID,OCC_ID,HOST,APP_GUID,COMENT)
+		values (@OPER_GUID,2080,@city,@STREET_ID,@BLDN_ID,@FLAT_ID,@OCC_ID,@HOST,@APP_GUID,@text_log)
+
+		if @@ERROR<>0
+		begin
+			goto _err
+		end
+	
+		---------------------------------------------------------------------------------------------------------------------------------------------
+		INSERT INTO OCC_CALC_LIST_HISTORY
+					(OCC_ID,SERVICE_ID,BLDN_ID,TAR_ID,UNITS,FT_ID,CALC_STATUS,CNTR_STATUS,CNTR_UNITS,NORM_UNITS,NORM_COEFF,SALDO,VALUE,ADDED,PAID,PENALTIES)
+		VALUES (@OCC_ID,@SERVICE_ID,@BLDN_ID,@TAR_ID,@UNITS,@FT_ID,@CALC_STATUS,@CNTR_STATUS,@CNTR_UNITS,@NORM_UNITS,@NORM_COEFF,@SALDO,@VALUE,@ADDED,@PAID,@PENALTIES)
+		---------------------------------------------------------------------------------------------------------------------------------------------
+
+		if @@ERROR<>0
+		begin
+			goto _err
+		end
+
+	COMMIT TRAN
+
+END
+----------------------------------------Конец процедуры------------------------------------------------------------------------------------------
+return 0
+_err:
+rollback tran
+
+USE [BILLING]
+GO
+/****** Object:  StoredProcedure [dbo].[APP_CALC_HISTORY_PROVERKA_FT]    Script Date: 30.07.2019 21:01:11 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[APP_CALC_HISTORY_PROVERKA_FT] 
+	(@OPER_GUID uniqueidentifier, @app_guid uniqueidentifier, @OCC_ID bigint,@FT_ID int)
+AS
+
+	declare @role int
+	--==select @role=ROLE_ID from Opers where GUID_oper=@OPER_GUID
+	select top 1 @role=ROLE_ID from OPERS_ROLES ro where OPER_GUID=@OPER_GUID 
+	if @role is null
+	begin
+		return -1
+	end
+
+	if not exists(select * from app where APP_GUID=@app_guid and is_admin=0)
+	begin
+		raiserror ('Вызов запрещен',11,1)
+		return -1
+	end
+
+	declare @BLDN_ID int
+
+	SELECT @BLDN_ID=b.ID_build from Streets s,Builds b,Flats f,OCC_LIST o
+	WHERE  s.ID_streets=b.ID_streets and b.ID_build = f.ID_build and f.ID_flats =o.FLAT_ID and o.ID=@OCC_ID
+	
+	--Выбрать список услуг для данно Л/С кроме тех, которые уже есть для данного финансового периода
+	SELECT DISTINCT bt.SERVICE_ID, s.[Service_Name] from BUILDS_TARIFS bt, [Services] s
+	WHERE bt.TARIFF_ID in (SELECT TARIFF_ID from BUILDS_TARIFS where BLDN_ID=@BLDN_ID)
+			and bt.BLDN_ID=@BLDN_ID and s.ID_Service=bt.SERVICE_ID
+			and s.ID_Service not in (select SERVICE_ID FROM OCC_CALC_LIST_HISTORY where OCC_ID=@OCC_ID and FT_ID=@FT_ID)
+			
+ USE [BILLING]
+GO
+/****** Object:  StoredProcedure [dbo].[APP_COUNTER_MODEL]    Script Date: 30.07.2019 21:01:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[APP_COUNTER_MODEL] 
+	(@COUNTER_MODEL_ID int,@OPER_GUID uniqueidentifier, @app_guid uniqueidentifier)
+AS
+
+	declare @role int
+	--==select @role=ROLE_ID from Opers where GUID_oper=@OPER_GUID
+	select top 1 @role=ROLE_ID from OPERS_ROLES ro where OPER_GUID=@OPER_GUID 
+	if @role is null
+	begin
+		return -1
+	end
+
+	if not exists(select * from app
+	where APP_GUID=@app_guid and is_admin=0)
+	begin
+		raiserror ('Вызов запрещен',11,1)
+		return -1
+	end
+	--declare @COUNTER_MODEL_ID int
+	--set @COUNTER_MODEL_ID=3
+	SELECT SERVICE_ID,MODEL_NAME,DIGIT_CAPACITY,[PRECISION],COEFF,PERIOD_VERIFICATION,ACTIVE,
+			(select RES_NAME from CNTR_RES where CNTR_RES_ID=(select CNTR_RES_ID from CNTR_MODEL where MODEL_ID=@COUNTER_MODEL_ID) ) as CNTR_Type,CNTR_RES_ID
+	FROM CNTR_MODEL WHERE MODEL_ID=@COUNTER_MODEL_ID
+
+
+USE [BILLING]
+GO
+/****** Object:  StoredProcedure [dbo].[APP_COUNTERS]    Script Date: 30.07.2019 21:01:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[APP_COUNTERS] 
+	(@LS int, @OPER_GUID uniqueidentifier, @app_guid uniqueidentifier)
+AS
+
+declare @role int
+--==select @role=ROLE_ID from Opers where GUID_oper=@OPER_GUID
+select top 1 @role=ROLE_ID from OPERS_ROLES ro where OPER_GUID=@OPER_GUID 
+if @role is null
+begin
+	return -1
+end
+
+if not exists(select * from app
+where APP_GUID=@app_guid and is_admin=0)
+begin
+	raiserror ('Вызов запрещен',11,1)
+	return -1
+end
+
+SELECT * FROM COUNTERS_LIST WHERE OCC_ID=@LS
+
+SELECT ID_Service FROM [Services]
+--select u.ID_user_doc, u.Series, u.Number, u.[Date] as Date_Doc, u.Organization, u.[Code], d.[Type], u.ID_doc_type from Users_doc u, Document_type d  where u.User_GUID=@GUID_user and u.ID_doc_type=d.ID_doc_type
+
+USE [BILLING]
+GO
+/****** Object:  StoredProcedure [dbo].[APP_COUNTERS_EDIT]    Script Date: 30.07.2019 21:02:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER proc [dbo].[APP_COUNTERS_EDIT]
+	(@type int,@COUNTER_ID int=null,@SERVICE_ID char(4)=null
+	,@SERIAL_NUM varchar(150)=null,@COUNTER_MODEL_ID int=null,@COUNTER_TYPE_ID int=null
+	,@MAX_VALUE decimal(18,4)=null,@LAST_VALUE decimal(18,4)=null,@CUR_VALUE decimal(18,4)=null
+	,@CUR_UNITS decimal(18,4)=null,@LAST_DATE date=null,@COEFF decimal(18,2)=null,@NORM decimal(18,4)=null
+	,@CALC_PEOPLE int =null,@DATE_CNTR datetime=null,@Installation_date date=null,@Date_of_commissioning date=null
+	,@Date_plant_mark date=null,@Date_of_last_verification date=null,@LS bigint=null
+	,@OPER_GUID uniqueidentifier,@APP_GUID uniqueidentifier,@HOST varchar(50) )
+AS
+
+	declare @STREET_ID int,@BLDN_ID int,@FLAT_ID int
+	declare @User_GUID uniqueidentifier
+	declare @err_text varchar(200)
+	declare @city int
+	select top 1 @city= ID_city from Cities
+	declare 
+		@SERVICE_ID_OLD char(4)=null
+		,@SERIAL_NUM_OLD varchar(150),@COUNTER_MODEL_ID_OLD int,@COUNTER_TYPE_ID_OLD int
+		,@MAX_VALUE_OLD decimal(18,4),@LAST_VALUE_OLD decimal(18,4),@CUR_VALUE_OLD decimal(18,4)
+		,@CUR_UNITS_OLD decimal(18,4),@LAST_DATE_OLD date,@COEFF_OLD decimal(18,2),@NORM_OLD decimal(18,4)
+		,@CALC_PEOPLE_OLD int,@DATE_CNTR_OLD datetime,@Installation_date_OLD date,@Date_of_commissioning_OLD date
+		,@Date_plant_mark_OLD date=null,@Date_of_last_verification_OLD date=null
+		,@text_log varchar(3000)=''
+
+------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------Редактирование счетчика---------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
+if @type=1
+BEGIN 
+
+	if rtrim(ltrim(@SERIAL_NUM))='' or @SERIAL_NUM is null
+	begin
+		raiserror ('Поле "Серийный номер" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@MAX_VALUE as varchar (50))))='' or @MAX_VALUE is null
+	begin
+		raiserror ('Поле "Максимальное значение" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@LAST_VALUE as varchar (50))))='' or @LAST_VALUE is null
+	begin
+		raiserror ('Поле "Последнее значение" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@CUR_VALUE as varchar (50))))='' or @CUR_VALUE is null
+	begin
+		raiserror ('Поле "Текущее значение" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@CUR_UNITS as varchar (50))))='' or @CUR_UNITS is null
+	begin
+		raiserror ('Поле "Текущие единицы" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@COEFF as varchar (50))))='' or @COEFF is null
+	begin
+		raiserror ('Поле "Коэффициент" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@NORM as varchar (50))))='' or @NORM is null
+	begin
+		raiserror ('Поле "Норма" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@CALC_PEOPLE as varchar (50))))='' or @CALC_PEOPLE is null
+	begin
+		raiserror ('Поле "Люди" не может быть пустым',11,1)
+		return -1
+	end
+
+	if @SERIAL_NUM=(select SERIAL_NUM from COUNTERS_LIST where SERIAL_NUM=@SERIAL_NUM) and @SERIAL_NUM_OLD<>@SERIAL_NUM
+	begin
+		raiserror ('Прибор с таким серийным номером уже существует',11,1)
+		return -1
+	end
+
+	set @text_log=@text_log+'Адрес: ' + dbo.Fn_address(@LS)  + ' :: '
+	select @STREET_ID=s.ID_streets,@BLDN_ID=b.ID_build,@FLAT_ID=f.ID_flats from Streets s,Builds b,Flats f,OCC_LIST o
+	where  s.ID_streets=b.ID_streets and b.ID_build = f.ID_build and f.ID_flats =o.FLAT_ID 
+			and o.ID=@LS
+
+	select
+		@SERVICE_ID_OLD =SERVICE_ID
+		,@SERIAL_NUM_OLD =SERIAL_NUM,@COUNTER_MODEL_ID_OLD =COUNTER_MODEL_ID,@COUNTER_TYPE_ID_OLD =COUNTER_TYPE_ID
+		,@MAX_VALUE_OLD =MAX_VALUE,@LAST_VALUE_OLD =LAST_VALUE,@CUR_VALUE_OLD =CUR_VALUE
+		,@CUR_UNITS_OLD =CUR_UNITS,@LAST_DATE_OLD =LAST_DATE,@COEFF_OLD =COEFF,@NORM_OLD =NORM
+		,@CALC_PEOPLE_OLD =CALC_PEOPLE,@DATE_CNTR_OLD =DATE_CNTR,@Installation_date_OLD =Installation_date,@Date_of_commissioning_OLD =Date_of_commissioning
+		,@Date_plant_mark_OLD =Date_plant_mark,@Date_of_last_verification_OLD =Date_of_last_verification
+	from COUNTERS_LIST where COUNTER_ID=@COUNTER_ID
+
+	declare @r int = 0 
+
+	if @SERVICE_ID_OLD<>@SERVICE_ID
+	begin
+		set @text_log=@text_log + 'Редактирование услуги > ' + cast(@SERVICE_ID_OLD as varchar(30)) + ' >> '+ cast(@SERVICE_ID as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @SERIAL_NUM_OLD<>@SERIAL_NUM
+	begin
+		set @text_log=@text_log + 'Редактирование серийного номера счетчика > ' + @SERIAL_NUM_OLD + ' >> '+ @SERIAL_NUM + ' || '
+		set @r=1
+	end
+
+	if @LAST_VALUE_OLD<>@LAST_VALUE
+	begin
+		set @text_log=@text_log + 'Редактирование последнего значения счетчика > ' + cast(@LAST_VALUE_OLD as varchar(30)) + ' >> '+ cast(@LAST_VALUE as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @CUR_VALUE_OLD<>@CUR_VALUE
+	begin
+		set @text_log=@text_log + 'Редактирование текущего значения счетчика > ' + cast(@CUR_VALUE_OLD as varchar(30)) + ' >> '+ cast(@CUR_VALUE as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @CUR_UNITS_OLD<>@CUR_UNITS
+	begin
+		set @text_log=@text_log + 'Редактирование текущих единиц счетчика > ' + cast(@CUR_UNITS_OLD as varchar(30)) + ' >> '+ cast(@CUR_UNITS as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if ((cast(isnull(@LAST_DATE_OLD,'') as varchar(30))<>cast(isnull(@LAST_DATE,'') as varchar(30))))
+	begin
+		set @text_log=@text_log + 'Редактирование последней даты показаний > ' + cast(@LAST_DATE_OLD as varchar(30)) + ' >> '+ cast(@LAST_DATE as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @NORM_OLD<>@NORM
+	begin
+		set @text_log=@text_log + 'Редактирование нормы > ' + cast(@NORM_OLD as varchar(30)) + ' >> '+ cast(@NORM as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @CALC_PEOPLE_OLD<>@CALC_PEOPLE
+	begin
+		set @text_log=@text_log + 'Редактирование количества людей > ' + cast(@CALC_PEOPLE_OLD as varchar(30)) + ' >> '+ cast(@CALC_PEOPLE as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @DATE_CNTR_OLD<>@DATE_CNTR
+	begin
+		set @text_log=@text_log + 'Редактирование даты счетчика > ' + cast(@DATE_CNTR_OLD as varchar(30)) + ' >> '+ cast(@DATE_CNTR as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @Installation_date_OLD<>@Installation_date
+	begin
+		set @text_log=@text_log + 'Редактирование даты установки > ' + cast(@Installation_date_OLD as varchar(30)) + ' >> '+ cast(@Installation_date as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @Date_of_commissioning_OLD<>@Date_of_commissioning
+	begin
+		set @text_log=@text_log + 'Редактирование даты ввода в эксплуатацию > ' + cast(@Date_of_commissioning_OLD as varchar(30)) + ' >> '+ cast(@Date_of_commissioning as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if ((cast(isnull(@Date_plant_mark_OLD,'') as varchar(30))<>cast(isnull(@Date_plant_mark,'') as varchar(30))))
+	begin
+		set @text_log=@text_log + 'Редактирование даты пломбировки > ' + cast(isnull(@Date_plant_mark_OLD,'') as varchar(30)) + ' >> '+ cast(isnull(@Date_plant_mark,'') as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if ((cast(isnull(@Date_of_last_verification_OLD,'') as varchar(30))<>cast(isnull(@Date_of_last_verification,'') as varchar(30))))
+	begin
+		set @text_log=@text_log + 'Редактирование даты следующей поверки > ' + cast(isnull(@Date_of_last_verification_OLD,'') as varchar(30)) + ' >> '+ cast(isnull(@Date_of_last_verification,'') as varchar(30)) + ' || '
+		set @r=1
+	end
+
+	if @r=1
+	begin
+
+		BEGIN TRAN
+
+		insert into LOG_BILIING(OPER_GUID,ACTION_ID,CITY_ID,STREET_ID,BLDN_ID,FLAT_ID,OCC_ID,HOST,APP_GUID,COMENT)
+		values (@OPER_GUID,47,@city,@STREET_ID,@BLDN_ID,@FLAT_ID,@LS,@HOST,@APP_GUID,@text_log)
+
+		if @@ERROR<>0
+		begin
+			goto _err
+		end
+		
+		------------------------------------------------------------------------------------------------------------------------------------
+		UPDATE COUNTERS_LIST
+		set
+			SERVICE_ID=@SERVICE_ID
+			,SERIAL_NUM=@SERIAL_NUM,COUNTER_MODEL_ID=@COUNTER_MODEL_ID,COUNTER_TYPE_ID=@COUNTER_TYPE_ID
+			,MAX_VALUE=@MAX_VALUE,LAST_VALUE=@LAST_VALUE,CUR_VALUE=@CUR_VALUE
+			,CUR_UNITS=@CUR_UNITS,LAST_DATE=@LAST_DATE,COEFF=@COEFF,NORM=@NORM
+			,CALC_PEOPLE=@CALC_PEOPLE,DATE_CNTR=@DATE_CNTR,Installation_date=@Installation_date,Date_of_commissioning=@Date_of_commissioning
+			,Date_plant_mark=@Date_plant_mark,Date_of_last_verification=@Date_of_last_verification
+		where COUNTER_ID=@COUNTER_ID
+		------------------------------------------------------------------------------------------------------------------------------------
+
+		if @@ERROR<>0
+		begin
+			goto _err
+		end
+
+		COMMIT TRAN
+	end
+
+END
+--------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------Удаление счетчика-----------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------
+if @type = 4
+BEGIN
+
+	select @SERIAL_NUM_OLD=SERIAL_NUM
+	from COUNTERS_LIST where COUNTER_ID=@COUNTER_ID
+
+	set @text_log=@text_log+'Адрес: ' + dbo.Fn_address(@LS)  + ' :: ' 
+	select @STREET_ID=s.ID_streets,@BLDN_ID=b.ID_build,@FLAT_ID=f.ID_flats from Streets s,Builds b,Flats f,OCC_LIST o
+	where  s.ID_streets=b.ID_streets and b.ID_build = f.ID_build and f.ID_flats =o.FLAT_ID 
+			and o.ID=@LS
+
+
+	set @text_log=@text_log + 'Удаление прибора учета > ' + cast(@SERIAL_NUM_OLD as varchar(150))  
+
+	BEGIN TRAN
+
+		insert into LOG_BILIING(OPER_GUID,ACTION_ID,CITY_ID,STREET_ID,BLDN_ID,FLAT_ID,OCC_ID,HOST,APP_GUID,COMENT)
+		values (@OPER_GUID,57,@city,@STREET_ID,@BLDN_ID,@FLAT_ID,@LS,@HOST,@APP_GUID,@text_log)
+
+		if @@ERROR<>0
+		begin
+			goto _err
+		end
+
+		-----------------------------------------Архивация счетчика----------------
+		--UPDATE
+		--CNTR_MODEL
+		--SET
+		--ACTIVE=0 Where MODEL_ID=@COUNTER_MODEL_ID
+
+		-----------------------------------------Удаление счетчика--------------------------------------------------------------
+		DELETE FROM COUNTERS_LIST WHERE COUNTER_ID=@COUNTER_ID
+		------------------------------------------------------------------------------------------------------------------------
+
+		if @@ERROR<>0
+		begin
+			goto _err
+		end
+
+	COMMIT TRAN
+
+END
+------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------Добавление счетчика-------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
+if @type=3
+BEGIN 
+
+	select @User_GUID=GUID_user from Users where LS=@LS and WHO_ID='отвл'
+	set @text_log=@text_log+'Адрес: ' + dbo.Fn_address(@LS)  + ' (' + dbo.Fn_FIO(@User_GUID) + ') :: '
+	select @STREET_ID=s.ID_streets,@BLDN_ID=b.ID_build,@FLAT_ID=f.ID_flats from Streets s,Builds b,Flats f,OCC_LIST o
+	where  s.ID_streets=b.ID_streets and b.ID_build = f.ID_build and f.ID_flats =o.FLAT_ID 
+			and o.ID=@LS
+
+	if rtrim(ltrim(@SERIAL_NUM))='' or @SERIAL_NUM is null
+	begin
+		raiserror ('Поле "Серийный номер" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@LAST_VALUE as varchar (50))))='' or @LAST_VALUE is null
+	begin
+		raiserror ('Поле "Последние показания" не может быть пустым',11,1)
+		return -1
+	end
+
+	if rtrim(ltrim(cast(@CUR_VALUE as varchar (50))))='' or @CUR_VALUE is null
+	begin
+		raiserror ('Поле "Текущие показания" не может быть пустым',11,1)
+		return -1
+	end
+
+	if @SERIAL_NUM=(select SERIAL_NUM from COUNTERS_LIST where SERIAL_NUM=@SERIAL_NUM)
+	begin
+		raiserror ('Прибор с таким серийным номером уже существует',11,1)
+		return -1
+	end
+
+	if @Date_of_last_verification<DATEADD(MONTH,1,GETDATE()) 
+	begin
+		raiserror ('Дата следующей поверки не может быть раньше, чем через месяц',11,1)
+		return -1
+	end
+
+	declare @P_V int
+	set @P_V = (select PERIOD_VERIFICATION from CNTR_MODEL where MODEL_ID=@COUNTER_MODEL_ID)
+
+	if @Date_of_last_verification>DATEADD(MONTH,@P_V,GETDATE())
+	begin
+		declare @Er_text varchar(300)
+		set @Er_text = 'Дата следующей поверки данной модели прибора не может быть позже, чем через ' + cast(@P_V as varchar(50)) + ' месяцев'
+		raiserror (@Er_text,11,1)
+		return -1
+	end
+
+	--if DATEADD(MINUTE,59,DATEADD(HOUR,23,cast(@Installation_date as datetime)))<GETDATE() 
+	--begin
+	--raiserror ('"Дата установки" не может быть раньше, чем текущая дата',11,1)
+	--return -1
+	--end
+
+	if @Date_of_commissioning<@Installation_date
+	begin
+		raiserror ('"Дата ввода в эксплуатацию" не может быть раньше, чем "Дата установки"',11,1)
+		return -1
+	end
+
+	if @Date_plant_mark<@Installation_date
+	begin
+		raiserror ('"Дата пломбировки" не может быть раньше, чем "Дата установки"',11,1)
+		return -1
+	end
+
+	BEGIN TRAN
+
+		set @text_log=@text_log+'Добавление прибора: ' + @SERIAL_NUM 
+		insert into LOG_BILIING(OPER_GUID,ACTION_ID,CITY_ID,STREET_ID,BLDN_ID,FLAT_ID,OCC_ID,HOST,APP_GUID,COMENT)
+		values (@OPER_GUID,49,@city,@STREET_ID,@BLDN_ID,@FLAT_ID,@LS,@HOST,@APP_GUID,@text_log)
+
+		if @@ERROR<>0
+			begin
+			goto _err	
+		end
+
+		-------------------------------------------------------------------------------------------------------------------------------------
+		INSERT INTO COUNTERS_LIST
+					(OCC_ID,SERVICE_ID,SERIAL_NUM,COUNTER_MODEL_ID,COUNTER_TYPE_ID,MAX_VALUE,LAST_VALUE,CUR_VALUE,CUR_UNITS
+					,LAST_DATE,COEFF,NORM,CALC_PEOPLE,DATE_CNTR,Installation_date,Date_of_commissioning,Date_of_last_verification,Date_plant_mark)
+		VALUES (@LS,@SERVICE_ID,@SERIAL_NUM,@COUNTER_MODEL_ID,@COUNTER_TYPE_ID,@MAX_VALUE,@LAST_VALUE,@CUR_VALUE,@CUR_UNITS
+				,@LAST_DATE,@COEFF,@NORM,@CALC_PEOPLE,@DATE_CNTR,@Installation_date,@Date_of_commissioning,@Date_of_last_verification,@Date_plant_mark)
+		-------------------------------------------------------------------------------------------------------------------------------------
+
+		if @@ERROR<>0
+			begin
+			goto _err
+		end
+
+	COMMIT TRAN
+
+END
+----------------------------------------Конец процедуры-----------------------------------------------------------------------------
+return 0
+_err:
+rollback tran
+
+USE [BILLING]
+GO
+/****** Object:  StoredProcedure [dbo].[APP_Flat_Edit]    Script Date: 30.07.2019 21:02:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER proc [dbo].[APP_Flat_Edit]
+(@type int,@id_flats int,@FLAT varchar(50),@flt1 int,@flt2 int,@ENTRANCE INT,@FLOORFLAT int,@ID_BUILD int,@OPER_GUID varchar(100),@APP_GUID varchar(100),@HOST varchar(50))
+as
+
+set @FLAT=rtrim(ltrim(@FLAT))
+
+declare @text_log varchar(1000)='',@err_text   varchar(1000)='',@street_id int
+
+select @street_id=ID_streets from Builds b where b.ID_build=@ID_BUILD
+
+declare @FLAT_OLD varchar(50),@ID_FLAT_TYPE_OLD int,@ENTRANCE_OLD int,@FLOORFLAT_OLD int,@AREA_OLD float,@NUMBER_REG_OLD int,@NUMBER_ROOMS_OLD int,@ID_FLAT_STATUS_OLD int
+select @FLAT_OLD=Flat,@ID_FLAT_TYPE_OLD=ID_flat_type,@ENTRANCE_OLD=Entrance,@FLOORFLAT_OLD=FloorFlat,@AREA_OLD=Area,@NUMBER_REG_OLD=Number_reg,@NUMBER_ROOMS_OLD=Number_rooms,
+@ID_FLAT_STATUS_OLD=ID_status
+from Flats where ID_flats=@id_flats
+-----------------------------------------Добавление квартир
+if @type=1
+begin
+
+if @flt1 is null or @flt2 is null
+begin
+select 'Неверный диапазон',0
+return -1
+end
+
+
+if @flt1>@flt2
+begin
+select 'Неверный диапазон',0
+return -1
+end
+
+declare @AddFlats table (FLAT_NO varchar(50),Coment varchar(300),add_status int)
+
+
+WHILE @flt1<=@flt2
+begin
+IF EXISTS  (Select * from Flats where ID_build=@ID_BUILD and Flat=@flt1) 
+begin
+insert into @AddFlats
+values(@flt1,'Квартира с таким номером уже существует!',0 )
+end
+else
+begin
+insert into @AddFlats
+values(@flt1,'OK',1 )
+
+begin tran
+insert into Flats(Flat,Entrance,FloorFlat,ID_build)
+values(@flt1,1,1,@ID_BUILD)
+if @@ERROR<>0
+begin
+goto _err
+end
+-------------
+set @text_log='Добавление квартиры: ' + CAST(@flt1 AS varchar(50))
+insert into LOG_BILIING(FLAT_ID,OPER_GUID,ACTION_ID,CITY_ID, STREET_ID,    BLDN_ID ,HOST,APP_GUID,COMENT)
+values (SCOPE_IDENTITY(),   @OPER_GUID,17,7,@street_id , @ID_BUILD ,@HOST,@APP_GUID,@text_log)
+
+if @@ERROR<>0
+begin
+goto _err
+end
+
+commit tran
+end
+set @flt1=@flt1+1
+
+end
+
+
+select '№ квартиры ' + FLAT_NO + ' ' + Coment,add_status  from @AddFlats where add_status=0
+
+
+end
+
+-----------------------------------------Редактирование квартир
+if @type=2
+begin
+	
+
+if rtrim(ltrim(CAST(@FLAT AS varchar(50))))='' or @FLAT is null
+begin
+raiserror ('Поле "Номер квартиры" не может быть пустым',11,1)
+return -1
+end
+
+IF EXISTS (Select * from Flats where ID_build=@ID_BUILD and Flat=@FLAT) and @FLAT_OLD<>@FLAT
+begin
+
+set @err_text='Квартира с таким номером уже существует!' 
+raiserror ( @err_text,11,1)
+return -1
+end
+
+
+
+if @FLAT_OLD<>@FLAT
+begin
+set @text_log=@text_log+'Редактирование номера квартиры > ' + CAST(@FLAT_OLD AS varchar(50)) + ' >> '+ CAST(@FLAT AS varchar(50))
+end
+
+if @ENTRANCE_OLD<>@ENTRANCE
+begin
+set @text_log=@text_log+'Редактирование номера подъезда > ' + CAST(@ENTRANCE_OLD AS varchar(50)) + ' >> '+ CAST(@ENTRANCE AS varchar(50))
+end
+
+if @FLOORFLAT_OLD<>@FLOORFLAT
+begin
+set @text_log=@text_log+'Редактирование этажа > ' + CAST(@FLOORFLAT_OLD AS varchar(50)) + ' >> '+ CAST(@FLOORFLAT AS varchar(50))
+end
+---------------------------------------
+begin tran
+insert into LOG_BILIING(STREET_ID,  FLAT_ID,BLDN_ID,  OPER_GUID,ACTION_ID,CITY_ID,HOST,APP_GUID,COMENT)
+values (@street_id ,@id_flats,@ID_BUILD,@OPER_GUID,15,7,@HOST,@APP_GUID,@text_log)
+
+if @@ERROR<>0
+begin
+goto _err
+end
+
+update Flats
+set Flat=@FLAT,Entrance=@ENTRANCE,FloorFlat=@FLOORFLAT
+where ID_flats=@id_flats
+
+if @@ERROR<>0
+begin
+goto _err
+end
+
+commit tran
+end
+
+-----------------------------------------Удаление квартир
+if @type=3
+begin
+
+
+IF EXISTS (Select * from Flats f,OCC_LIST o where f.ID_flats=o.FLAT_ID and f.ID_flats=@id_flats) 
+begin
+
+set @err_text='В квартире существуют лицевые счета!' 
+raiserror ( @err_text,11,1)
+return -1
+end
+
+set @text_log=@text_log+'Удаление квартиры > ' + CAST(@FLAT_OLD AS varchar(50)) 
+------------------------------
+begin tran
+insert into LOG_BILIING(STREET_ID,   FLAT_ID,BLDN_ID,  OPER_GUID,ACTION_ID,CITY_ID,HOST,APP_GUID,COMENT)
+values ( @street_id,    @id_flats,@ID_BUILD,@OPER_GUID,16,7,@HOST,@APP_GUID,@text_log)
+
+if @@ERROR<>0
+begin
+goto _err
+end
+
+delete from Flats
+where ID_flats=@id_flats
+
+if @@ERROR<>0
+begin
+goto _err
+end
+
+
+commit tran
+end
+
+return -1
+_err:
+
+raiserror('Ошибка',11,1)
+rollback tran
+
+USE [BILLING]
+GO
+/****** Object:  StoredProcedure [dbo].[APP_OCC_UPDATE]    Script Date: 30.07.2019 21:03:45 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[APP_OCC_UPDATE] 
+	(@DOG_NUM varchar(32),@OCC_TYPE_ID int, @OCC_STATUS_ID int, @OCC_PROPERTY_ID char(4), @SQ decimal(18,2), @HOT_SQ decimal(18,2), @LIVING_SQ decimal(18,2), @MOP_SQ decimal(18,2), @MAIL varchar(50),
+	 @PHONE varchar(50), @PHONE2 varchar(50), @CADASTRAL_CODE varchar(50), @GIS_ELS varchar(64), @EXTERNAL_CODE varchar(32), @IS_CLOSED int, @REASON_ARHIV varchar(100),
+	 @LS bigint,
+	 @OPER_GUID uniqueidentifier, @app_guid uniqueidentifier, @HOST varchar(50))
+AS
+
+	declare @err_text varchar(200)
+
+	declare @role int
+	--==select @role=ROLE_ID from Opers where GUID_oper=@OPER_GUID
+	select top 1 @role=ROLE_ID from OPERS_ROLES ro where OPER_GUID=@OPER_GUID 
+	if @role is null
+	begin
+		return -1
+	end
+
+	if not exists(select * from app
+	where APP_GUID=@app_guid and is_admin=0)
+	begin
+		raiserror ('Вызов запрещен',11,1)
+		return -1
+	end
+
+	declare
+	@DOG_NUM_OLD varchar(32),@OCC_TYPE_ID_OLD int,@OCC_STATUS_ID_OLD int,@OCC_PROPERTY_ID_OLD char(4),@SQ_OLD decimal(18,2),@HOT_SQ_OLD decimal(18,2),@LIVING_SQ_OLD decimal(18,2),@MOP_SQ_OLD decimal(18,2),@MAIL_OLD varchar(50),
+	@PHONE_OLD varchar(50), @PHONE2_OLD varchar(50), @CADASTRAL_CODE_OLD varchar(50), @GIS_ELS_OLD varchar(64), @EXTERNAL_CODE_OLD varchar(32), @IS_CLOSED_OLD int,
+	@text_log varchar(3000)=''
+
+	select	@DOG_NUM_OLD=DOG_NUM,@OCC_TYPE_ID_OLD=OCC_TYPE_ID,@OCC_STATUS_ID_OLD=OCC_STATUS_ID,@OCC_PROPERTY_ID_OLD=OCC_PROPERTY_ID,@SQ_OLD=SQ,@HOT_SQ_OLD=HOT_SQ,
+			@LIVING_SQ_OLD=LIVING_SQ,@MOP_SQ_OLD=MOP_SQ,@MAIL_OLD=MAIL,
+			@PHONE_OLD=PHONE,@PHONE2_OLD=PHONE2,@CADASTRAL_CODE_OLD=CADASTRAL_CODE,@GIS_ELS_OLD=GIS_ELS,@EXTERNAL_CODE_OLD=EXTERNAL_CODE,@IS_CLOSED_OLD=IS_CLOSED
+	from OCC_LIST where ID=@LS
+
+	--IF EXISTS (Select * from Builds where ID_streets=@street_id and rtrim(ltrim(Build))=rtrim(ltrim(@BLDN_NO))) and @BLDN_NO_OLD<>@BLDN_NO
+	--begin
+	--set @err_text='Дом с таким номером уже существует!' 
+	--raiserror ( @err_text,11,1)
+	--return -1
+	--end
+
+	if ISNULL(@DOG_NUM_OLD,'')<>@DOG_NUM
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Номер договора > ' + ISNULL(@DOG_NUM_OLD,'') + ' >> '+ ISNULL(@DOG_NUM,'') + ' | '
+	end
+
+	if @OCC_TYPE_ID_OLD<>@OCC_TYPE_ID
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Типа Л/С > ' + cast(@OCC_TYPE_ID_OLD as varchar(50)) + ' >> '+ cast(@OCC_TYPE_ID as varchar(50)) + ' | '
+	end
+
+	if @OCC_STATUS_ID_OLD<>@OCC_STATUS_ID
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Статуса  Л/С > ' + cast(@OCC_STATUS_ID_OLD as varchar(50)) + ' >> '+ cast(@OCC_STATUS_ID as varchar(50)) + ' | '
+	end
+
+	if @OCC_PROPERTY_ID_OLD<>@OCC_PROPERTY_ID
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Свойства  Л/С > ' + @OCC_PROPERTY_ID_OLD + ' >> '+ @OCC_PROPERTY_ID + ' | '
+	end
+
+	if @SQ_OLD<>@SQ
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Общей площади > ' + cast(@SQ_OLD as varchar(50)) + ' >> '+ cast(@SQ as varchar(50)) + ' | '
+	end
+
+	if @HOT_SQ_OLD<>@HOT_SQ
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Отапливаемой площади > ' + cast(@HOT_SQ_OLD as varchar(50)) + ' >> '+ cast(@HOT_SQ as varchar(50)) + ' | '
+	end
+
+	if @LIVING_SQ_OLD<>@LIVING_SQ
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Жилой площади> ' + cast(@LIVING_SQ_OLD as varchar(50)) + ' >> '+ cast(@LIVING_SQ as varchar(50)) + ' | '
+	end
+
+	if @MOP_SQ_OLD<>@MOP_SQ
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Площади МОП > ' + cast(@MOP_SQ_OLD as varchar(50)) + ' >> '+ cast(@MOP_SQ as varchar(50)) + ' | '
+	end
+
+	if ISNULL(@MAIL_OLD,'')<>ltrim(rtrim(@MAIL))
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Email > ' + ISNULL(@MAIL_OLD,'') + ' >> '+ ISNULL(@MAIL,'') + ' | '
+	end
+
+	if ISNULL(@PHONE_OLD,'')<>ltrim(rtrim(@PHONE))
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Телефона > ' + ISNULL(@PHONE_OLD,'') + ' >> '+ ISNULL(@PHONE,'') + ' | '
+	end
+
+	if ISNULL(@PHONE2_OLD,'')<>ltrim(rtrim(@PHONE2))
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Дополнительного телефона > ' + ISNULL(@PHONE2_OLD,'') + ' >> '+ ISNULL(@PHONE2,'') + ' | '
+	end
+
+	if ISNULL(@CADASTRAL_CODE_OLD,'')<>ltrim(rtrim(@CADASTRAL_CODE))
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Кадастра > ' + ISNULL(@CADASTRAL_CODE_OLD,'') + ' >> '+ ISNULL(@CADASTRAL_CODE,'') + ' | '
+	end
+
+	if ISNULL(@GIS_ELS_OLD,'')<>ltrim(rtrim(@GIS_ELS))
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') ГИС > ' + ISNULL(@GIS_ELS_OLD,'') + ' >> '+ ISNULL(@GIS_ELS,'') + ' | '
+	end
+
+	if ISNULL(@EXTERNAL_CODE_OLD,'')<>ltrim(rtrim(@EXTERNAL_CODE))
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Кода > ' + ISNULL(@EXTERNAL_CODE_OLD,'') + ' >> '+ ISNULL(@EXTERNAL_CODE,'') + ' | '
+	end
+
+	if @IS_CLOSED_OLD<>@IS_CLOSED
+	begin
+		set @text_log='Редактирование (Л/С ' + cast(@LS as varchar(50)) + ') Закрытия > ' + cast(@IS_CLOSED_OLD as varchar(50)) + ' >> '+ cast(@IS_CLOSED as varchar(50)) + ' | '
+	end
+
+	declare @STREET_ID int,@BLDN_ID int,@FLAT_ID int
+	select @STREET_ID=s.ID_streets,@BLDN_ID=b.ID_build,@FLAT_ID=f.ID_flats from Streets s,Builds b,Flats f,OCC_LIST o
+	where  s.ID_streets=b.ID_streets and b.ID_build = f.ID_build and f.ID_flats =o.FLAT_ID 
+			and o.ID=@LS
+
+	BEGIN TRAN
+
+		insert into LOG_BILIING(OPER_GUID,ACTION_ID,CITY_ID,OCC_ID,STREET_ID,BLDN_ID,FLAT_ID,APP_GUID,HOST,COMENT)
+		values (@OPER_GUID,50,7,@LS,@STREET_ID,@BLDN_ID,@FLAT_ID,@APP_GUID,@HOST,@text_log)
+
+		declare @END_DATE date
+		if @IS_CLOSED = 1
+		begin
+			set @END_DATE=GETDATE()
+		end
+		if @IS_CLOSED = 0
+		begin
+			set @END_DATE=NULL
+		end
+
+		------------------------------------------------------------------------------------------------------------------------------------------------
+		UPDATE OCC_LIST
+		SET DOG_NUM=@DOG_NUM,OCC_TYPE_ID=@OCC_TYPE_ID,OCC_STATUS_ID=@OCC_STATUS_ID,OCC_PROPERTY_ID=@OCC_PROPERTY_ID,SQ=@SQ,HOT_SQ=@HOT_SQ,
+			LIVING_SQ=@LIVING_SQ,MOP_SQ=@MOP_SQ,MAIL=ltrim(rtrim(@MAIL)),PHONE=ltrim(rtrim(@PHONE)),PHONE2=ltrim(rtrim(@PHONE2)),
+			CADASTRAL_CODE=ltrim(rtrim(@CADASTRAL_CODE)),GIS_ELS=ltrim(rtrim(@GIS_ELS)),EXTERNAL_CODE=ltrim(rtrim(@EXTERNAL_CODE)),
+			END_DATE=@END_DATE,IS_CLOSED=@IS_CLOSED,REASON_ARHIV=ltrim(rtrim(@REASON_ARHIV))
+		WHERE ID=@LS
+		------------------------------------------------------------------------------------------------------------------------------------------------
+
+		if @IS_CLOSED=1
+		begin
+			update Users
+			set ARH=1
+			where LS=@LS
+		end
+
+		if @@ERROR<>0
+		begin
+			goto _err
+		end
+
+	COMMIT TRAN
+-------------------------Конец процедуры---------------------------------------------------------------------------------------------------------------
+return 0
+_err:
+rollback tran
